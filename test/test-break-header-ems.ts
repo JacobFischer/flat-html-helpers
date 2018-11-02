@@ -29,7 +29,7 @@ describe("breakHeaderEms", () => {
     });
     it("should only insert <br />s on custom levels", () => {
         const levels = [2, 3];
-        const { input, output } = makeTestHtml((n) => levels.includes(n) ? "<br />" : "");
+        const { input, output } = makeTestHtml((n) => levels.indexOf(n) > -1 ? "<br />" : "");
 
         expect(breakHeaderEms(input, { levels })).to.equal(output, "Did not insert a <br /> before <em>");
     });

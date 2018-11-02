@@ -1,6 +1,16 @@
 const defaultSectionClass = (level: number) => `for-h${level}`;
 const defaultContentClass = (level: number) => `h${level}-content`;
 
+function repeat(str: string, count: number): string {
+    if (count === 0) {
+        return "";
+    }
+
+    return count > 1
+        ? str + repeat(str, count - 1)
+        : str;
+}
+
 function ensureFunction(
     val: string | undefined | ((level: number) => string),
     defaultFunction: ((level: number) => string),
@@ -44,7 +54,7 @@ export function sectionize(
     // tslint:disable-next-line:prefer-template
     return html
         .replace(new RegExp(`(<hr>\\n)?<h([${levels}]).*?>`, "g"), (s) => {
-            const hr = (options.pushDownHrs && s.startsWith("<hr>"))
+            const hr = (options.pushDownHrs && s.indexOf("<hr>") === 0)
                 ? "<hr>"
                 : "";
 
@@ -70,7 +80,7 @@ export function sectionize(
                 const diff = (last - level);
                 stack.length = Math.max(0, stack.length - diff);
 
-                return "</div></section>".repeat(diff + 1) + section;
+                return repeat("</div></section>", diff + 1) + section;
             }
         })
         // Add the div for the contents as mentioned above
@@ -78,5 +88,5 @@ export function sectionize(
             `${s}<div class="${contentClass(Number(s[3]))}">`
         ))
         // Finally close all elements we added in above, to "finish" the html
-    + "</div></section>".repeat(stack.length) + "\n";
+    + repeat("</div></section>", stack.length) + "\n";
 }

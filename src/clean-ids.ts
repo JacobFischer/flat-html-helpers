@@ -14,12 +14,12 @@ export function cleanIds(
     html: string,
     duplicateFormatter: (id: string, n: number) => string = defaultDuplicateFormatter,
 ): string {
-    const ids = new Map<string, number>();
+    const ids: { [key: string]: number } = {};
 
     return html.replace(/id=\"([^"]*)\"/g, (s) => {
         const id = s.slice(4, s.length - 1); // 4 from `id="`
-        const n = (ids.get(id) || 0) + 1;
-        ids.set(id, n);
+        const n = (ids[id] || 0) + 1;
+        ids[id] = n;
 
         return `id="${(n > 1
             ? duplicateFormatter(id, n)
