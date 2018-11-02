@@ -48,7 +48,7 @@ const makeTestOutput = (
 `;
 // tslint:enable:max-line-length
 
-describe("breakHeaderEms", () => {
+describe("sectionize", () => {
     it("should be a function", () => {
         expect(sectionize).to.be.a("function", "sectionize should be a function");
     });
