@@ -48,6 +48,6 @@
     "lint:fix": "tslint --config tslint.json --project tsconfig.json --fix --force",
     "mocha": "mocha dist/test --reporter spec",
     "pre:pack": "npm run build && shx cp -R ./dist/src/* ./",
-    "test": "npm run build:test && npm run lint && npm run mocha"
+    "test": "npm run build:test && npm run mocha"
   }
 }
