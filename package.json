@@ -1,0 +1,52 @@
+{
+  "name": "flat-html-helpers",
+  "version": "1.0.0-rc1",
+  "description": "Helper utils",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": {
+    "name": "Jacob Fischer",
+    "email": "jacob.t.fischer@gmail.com",
+    "url": "https://github.com/JacobFischer"
+  },
+  "homepage": "https://jacobfischer.github.io/flat-html-helpers/",
+  "bugs": {
+    "url": "https://github.com/JacobFischer/flat-html-helpers/issues"
+  },
+  "license": "MIT",
+  "private": false,
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JacobFischer/flat-html-helpers"
+  },
+  "keywords": [
+    "html",
+    "util",
+    "markdown",
+    "section"
+  ],
+  "devDependencies": {
+    "@cadre/ts-utils": "1.0.5",
+    "@types/chai": "4.1.7",
+    "@types/mocha": "5.2.5",
+    "@types/node": "10.12.1",
+    "chai": "4.2.0",
+    "mocha": "5.2.0",
+    "shx": "0.3.2",
+    "tslint": "5.11.0",
+    "typedoc": "0.13.0",
+    "typescript": "3.1.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:test": "npm run build -- --noEmit",
+    "clean": "shx rm -rf dist docs",
+    "docs": "typedoc --tsconfig ./tsconfig.json --out docs --module commonjs --mode modules",
+    "lint": "tslint --config tslint.json --project tsconfig.json",
+    "lint:fix": "tslint --config tslint.json --project tsconfig.json --fix --force",
+    "mocha": "mocha dist/test --reporter spec",
+    "pre:pack": "npm run build && shx cp -R ./dist/src/* ./",
+    "test": "npm run build:test && npm run lint && npm run mocha"
+  }
+}
