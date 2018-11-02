@@ -12,7 +12,7 @@ before_deploy:
   # build the docs for the API
   - npm run docs
   # file to tell GitHub pages not to try to run jekyll stuff (can break urls)
-  - touch temp/docs/.nojekyll
+  - touch docs/.nojekyll
   # prepare directory for npm and gh-pages deploy
   - npm run pre:pack
   - npm pack
