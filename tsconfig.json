@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "esnext",
+        "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true,
@@ -8,7 +8,6 @@
         "strict": true,
         "strictNullChecks": true,
         "removeComments": false,
-        "allowSyntheticDefaultImports": true,
 
         "noImplicitAny": true,
         "noFallthroughCasesInSwitch": true,
