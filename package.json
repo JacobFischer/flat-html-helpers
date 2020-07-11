@@ -1,6 +1,6 @@
 {
   "name": "flat-html-helpers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helper utils for flat html structures",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

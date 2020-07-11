@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning].
 
 ## [1.0.1] - 2020-10-07
 ### Security
-- Resolved npm securitya alerts in devDependencies
+- Resolved npm security alerts within devDependencies
 
 ### Updated
 - Internal refactors when bumping devDependencies
