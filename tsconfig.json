@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es3",
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true,
@@ -19,11 +19,4 @@
         "outDir": "dist",
         "baseUrl": "./",
     },
-    "include": [
-        "node_modules/@types/**/*.d.ts",
-        "src/**/*.ts",
-        "src/**/*.d.ts",
-        "test/**/*.ts",
-        "test/**/*.d.ts"
-    ]
 }

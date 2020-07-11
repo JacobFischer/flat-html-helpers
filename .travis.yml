@@ -1,10 +1,8 @@
 language: nodejs
 
-before_script:
-  - nvm install
-  - npm install
-
 script:
+  - npm run prettier:check
+  - npm run lint
   - npm run build
   - npm test
 
@@ -13,8 +11,6 @@ before_deploy:
   - npm run docs
   # file to tell GitHub pages not to try to run jekyll stuff (can break urls)
   - touch docs/.nojekyll
-  # prepare directory for npm and gh-pages deploy
-  - npm run pre:pack
   - npm pack
 
 deploy:

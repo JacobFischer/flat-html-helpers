@@ -1,13 +1,14 @@
-import { expect } from "chai";
 import { cleanIds } from "../src";
 
 describe("cleanIds", () => {
     it("should be a function", () => {
-        expect(cleanIds).to.be.a("function", "cleanIds should be a function");
+        expect(typeof cleanIds).toBe("function");
     });
+
     it("should require arguments", () => {
-        expect(cleanIds).to.throw(TypeError);
+        expect(cleanIds).toThrowError(TypeError);
     });
+
     it("should clean duplicate ids", () => {
         const uncleanHtml = `
             <hr id="test">
@@ -17,15 +18,17 @@ describe("cleanIds", () => {
             <hr id="test">
             <hr id="test-2">`;
 
-        expect(cleanIds(uncleanHtml)).to.equal(cleanHtml, "Did not clean ids from duplicates");
+        expect(cleanIds(uncleanHtml)).toEqual(cleanHtml);
     });
+
     it("should not clean different ids", () => {
         const html = `
             <hr id="test">
             <hr id="test2">`;
 
-        expect(cleanIds(html)).to.equal(html, "Ids mutated when they should not have");
+        expect(cleanIds(html)).toEqual(html);
     });
+
     it("should should allow custom duplicate function", () => {
         const uncleanHtml = `
             <hr id="test">
@@ -35,11 +38,11 @@ describe("cleanIds", () => {
             <hr id="test">
             <hr id="test__2">`;
 
-        expect(cleanIds(
-            uncleanHtml,
-            (id, n) => `${id}__${n}`,
-        )).to.equal(cleanHtml, "Did not clean ids from duplicates");
+        expect(cleanIds(uncleanHtml, (id, n) => `${id}__${n}`)).toEqual(
+            cleanHtml,
+        );
     });
+
     it("should not mangle id like attributes", () => {
         const html = `
             <hr cid="test">
@@ -50,6 +53,6 @@ describe("cleanIds", () => {
             <hr idd='test6'>
             <hr id-"test7"`;
 
-        expect(cleanIds(html)).to.equal(html, "Mangled html elements with id like attributes.");
+        expect(cleanIds(html)).toEqual(html);
     });
 });
