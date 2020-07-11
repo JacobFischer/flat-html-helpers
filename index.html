@@ -1,0 +1,187 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>flat-html-helpers</title>
+	<meta name="description" content="Documentation for flat-html-helpers">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">flat-html-helpers</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>flat-html-helpers</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#flat-html-helpers" id="flat-html-helpers" style="color: inherit; text-decoration: none;">
+					<h1>Flat HTML Helpers</h1>
+				</a>
+				<p>This is a utility library primarily focused around quick and dirty HTML edits
+				from flat sources, such as <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>.</p>
+				<p>When you parse a markdown file that follows a spec, often times the output HTML
+					is very flat and lacking. This
+					library is a middle man to help format and generally improve the HTML markup for
+				use on websites.</p>
+				<p><strong>NOTE</strong>: This is <strong>not</strong> a Markdown parser. Instead you can parse your markdown
+					with whatever your favorite parser
+					is (I like <a href="https://github.com/markedjs/marked">marked</a>), then through the generated HTML trough the util
+				function(s) here.</p>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>Documentation is automatically built and deployed on our GitHub pages site
+				<a href="http://jacobfischer.github.io/flat-html-helpers">here</a>.</p>
+				<a href="#functions" id="functions" style="color: inherit; text-decoration: none;">
+					<h2>Functions</h2>
+				</a>
+				<a href="#breakheaderems" id="breakheaderems" style="color: inherit; text-decoration: none;">
+					<h3>breakHeaderEms</h3>
+				</a>
+				<p>Injects line breaks before <code>&lt;em&gt;</code> tags within header tags.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> formatted = breakHeaderEms(<span class="hljs-string">&#x27;&lt;h1&gt;Foo &lt;em&gt;Bar&lt;/em&gt;&lt;/h1&gt;&#x27;</span>);
+<span class="hljs-built_in">console</span>.log(formatted); <span class="hljs-comment">// &#x27;&lt;h1&gt;Foo &lt;br /&gt;&lt;em&gt;Bar&lt;/em&gt;&lt;/h1&gt;&#x27;</span></code></pre>
+				<a href="#cleanids" id="cleanids" style="color: inherit; text-decoration: none;">
+					<h3>cleanIds</h3>
+				</a>
+				<p>Cleans up ids that may have duplicates; by adding a <code>-N</code> to the end, or you own
+				custom formatter.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> cleaned = cleanIds(<span class="hljs-string">&#x27;&lt;hr id=&quot;test&quot;&gt;&lt;hr id=&quot;test&quot;&gt;&#x27;</span>);
+<span class="hljs-built_in">console</span>.log(cleaned); <span class="hljs-comment">// &#x27;&lt;hr id=&quot;test&quot;&gt;&lt;hr id=&quot;test-2&quot;&gt;&#x27;;</span></code></pre>
+				<p>It also can take an optional <code>duplicateFormatter</code> callback to format duplicate
+				Ids.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> cleaned = cleanIds(
+    <span class="hljs-string">&#x27;&lt;hr id=&quot;test&quot;&gt;&lt;hr id=&quot;test&quot;&gt;&#x27;</span>,
+    <span class="hljs-function">(<span class="hljs-params">id, n</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${id}</span>___<span class="hljs-subst">${n}</span>`</span>,
+);
+<span class="hljs-built_in">console</span>.log(cleaned); <span class="hljs-comment">// &#x27;&lt;hr id=&quot;test&quot;&gt;&lt;hr id=&quot;test___2&quot;&gt;&#x27;;</span></code></pre>
+				<a href="#sectionize" id="sectionize" style="color: inherit; text-decoration: none;">
+					<h3>sectionize</h3>
+				</a>
+				<p>Nests and wraps flat <code>&lt;h#&gt;</code> tags into sections.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> sectionized = sectionize(<span class="hljs-string">`
+    &lt;h1&gt;First&lt;/h2&gt;
+    &lt;p&gt;first content&lt;/p&gt;
+    &lt;h2&gt;Second&lt;/h2&gt;
+    &lt;p&gt;second&lt;/p&gt;`</span>,
+);
+<span class="hljs-built_in">console</span>.log(sectionized);
+<span class="hljs-comment">/*
+&lt;section class=&quot;for-h1&quot;&gt;
+    &lt;h1&gt;First&lt;/h2&gt;
+    &lt;div class=&quot;h2-content&quot;&gt;
+        &lt;p&gt;first content&lt;/p&gt;
+        &lt;section class=&quot;for-h2&quot;&gt;
+            &lt;h2&gt;Second&lt;/h2&gt;
+            &lt;div class=&quot;h2-content&quot;&gt;
+                &lt;p&gt;second&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+*/</span></code></pre>
+				<p><em>Note</em>: exact whitespace (newlines and indentation) will not be pretty printed
+				like this example. It was added to enhance readability.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-function">
+						<a href="globals.html#breakheaderems" class="tsd-kind-icon">break<wbr>Header<wbr>Ems</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#cleanids" class="tsd-kind-icon">clean<wbr>Ids</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defaultcontentclass" class="tsd-kind-icon">default<wbr>Content<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defaultduplicateformatter" class="tsd-kind-icon">default<wbr>Duplicate<wbr>Formatter</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defaultsectionclass" class="tsd-kind-icon">default<wbr>Section<wbr>Class</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ensurefunction" class="tsd-kind-icon">ensure<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#repeat" class="tsd-kind-icon">repeat</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#sectionize" class="tsd-kind-icon">sectionize</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
